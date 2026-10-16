@@ -10,12 +10,24 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TheoryRouteImport } from './routes/theory'
+import { Route as ExplorerRouteImport } from './routes/explorer'
+import { Route as AnalyzerRouteImport } from './routes/analyzer'
 import { Route as QuizRouteImport } from './routes/quiz'
 import { Route as ProcedureRouteImport } from './routes/procedure'
 import { Route as LabRouteImport } from './routes/lab'
 import { Route as ContributorsRouteImport } from './routes/contributors'
 import { Route as IndexRouteImport } from './routes/index'
 
+const AnalyzerRoute = AnalyzerRouteImport.update({
+  id: '/analyzer',
+  path: '/analyzer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExplorerRoute = ExplorerRouteImport.update({
+  id: '/explorer',
+  path: '/explorer',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TheoryRoute = TheoryRouteImport.update({
   id: '/theory',
   path: '/theory',
@@ -49,6 +61,8 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/analyzer': typeof AnalyzerRoute
+  '/explorer': typeof ExplorerRoute
   '/contributors': typeof ContributorsRoute
   '/lab': typeof LabRoute
   '/procedure': typeof ProcedureRoute
@@ -57,6 +71,8 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/analyzer': typeof AnalyzerRoute
+  '/explorer': typeof ExplorerRoute
   '/contributors': typeof ContributorsRoute
   '/lab': typeof LabRoute
   '/procedure': typeof ProcedureRoute
@@ -66,6 +82,8 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/analyzer': typeof AnalyzerRoute
+  '/explorer': typeof ExplorerRoute
   '/contributors': typeof ContributorsRoute
   '/lab': typeof LabRoute
   '/procedure': typeof ProcedureRoute
@@ -74,12 +92,14 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/contributors' | '/lab' | '/procedure' | '/quiz' | '/theory'
+  fullPaths: '/' | '/analyzer' | '/explorer' | '/contributors' | '/lab' | '/procedure' | '/quiz' | '/theory'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/contributors' | '/lab' | '/procedure' | '/quiz' | '/theory'
+  to: '/' | '/analyzer' | '/explorer' | '/contributors' | '/lab' | '/procedure' | '/quiz' | '/theory'
   id:
     | '__root__'
     | '/'
+    | '/analyzer'
+    | '/explorer'
     | '/contributors'
     | '/lab'
     | '/procedure'
@@ -89,6 +109,8 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AnalyzerRoute: typeof AnalyzerRoute
+  ExplorerRoute: typeof ExplorerRoute
   ContributorsRoute: typeof ContributorsRoute
   LabRoute: typeof LabRoute
   ProcedureRoute: typeof ProcedureRoute
@@ -98,6 +120,20 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/analyzer': {
+      id: '/analyzer'
+      path: '/analyzer'
+      fullPath: '/analyzer'
+      preLoaderRoute: typeof AnalyzerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/explorer': {
+      id: '/explorer'
+      path: '/explorer'
+      fullPath: '/explorer'
+      preLoaderRoute: typeof ExplorerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/theory': {
       id: '/theory'
       path: '/theory'
@@ -145,6 +181,8 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AnalyzerRoute: AnalyzerRoute,
+  ExplorerRoute: ExplorerRoute,
   ContributorsRoute: ContributorsRoute,
   LabRoute: LabRoute,
   ProcedureRoute: ProcedureRoute,
