@@ -1,12 +1,13 @@
 import { Link, useLocation } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { Sun, Activity, BookOpen, ListChecks, Brain, Sparkles, Users, Compass, LineChart } from "lucide-react";
+import { Sun, Activity, BookOpen, ListChecks, Brain, Sparkles, Users, Compass, LineChart, FlaskConical } from "lucide-react";
 
 const links = [
   { to: "/", label: "Home", icon: Sparkles },
   { to: "/lab", label: "Lab", icon: Activity },
   { to: "/explorer", label: "Explorer", icon: Compass },
   { to: "/analyzer", label: "Analyzer", icon: LineChart },
+  { to: "/studio", label: "Studio", icon: FlaskConical },
   { to: "/theory", label: "Theory", icon: BookOpen },
   { to: "/procedure", label: "Procedure", icon: ListChecks },
   { to: "/quiz", label: "Quiz & Viva", icon: Brain },

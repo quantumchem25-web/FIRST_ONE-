@@ -18,6 +18,7 @@ export function Footer() {
           <h4 className="text-sm font-semibold mb-3">Explore</h4>
           <ul className="space-y-2 text-sm text-muted-foreground">
             <li><Link to="/lab" className="hover:text-[var(--neon-cyan)]">Simulation</Link></li>
+            <li><Link to="/studio" className="hover:text-[var(--neon-cyan)]">Studio</Link></li>
             <li><Link to="/theory" className="hover:text-[var(--neon-cyan)]">Theory</Link></li>
             <li><Link to="/procedure" className="hover:text-[var(--neon-cyan)]">Procedure</Link></li>
             <li><Link to="/quiz" className="hover:text-[var(--neon-cyan)]">Quiz & Viva</Link></li>
